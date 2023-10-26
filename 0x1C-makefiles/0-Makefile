@@ -1,0 +1,19 @@
+# Makefile for 'school' executable
+
+# Define the name of the executable
+TARGET = school
+
+# Define the 'all' rule
+all: $(TARGET)
+
+# Compile the source code into the executable
+$(TARGET): main.c
+	gcc -o $(TARGET) main.c
+
+# Clean up the generated files
+clean:
+	rm -f $(TARGET)
+
+# By default, 'make' will execute the 'all' rule
+.DEFAULT_GOAL := all
+
