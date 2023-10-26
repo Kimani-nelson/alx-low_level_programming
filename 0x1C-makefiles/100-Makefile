@@ -1,42 +1,21 @@
-# Makefile for 'school' executable
-
-# Compiler and flags
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -pedantic
-
-# Source files
-SRC = main.c file1.c file2.c  # Add all your source files here
-
-# Generate object file names from source files
+SRC = main.c school.c
 OBJ = $(SRC:.c=.o)
-
-# Define the name of the executable
 NAME = school
-
-# Default rule
-all: $(NAME)
-
-# Build the executable
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) -o $@ $^
-
-# Clean up the generated files
-clean:
-	@rm -f *~ \#* $(NAME)
-
-# Delete the object files
-oclean:
-	@rm -f $(OBJ)
-
-# Delete Emacs and Vim temporary files, the executable, and the object files
-fclean: clean oclean
-
-# Force recompilation of all source files
-re: fclean all
+CFLAGS = -Wall -Werror -Wextra -pedantic
 
 .PHONY: all clean oclean fclean re
 
-# Include header file dependency
--include m.h
+all: m.h $(OBJ)
+	$(CC) $(OBJ) -o $(NAME)
 
+clean:
+	$(RM) *~ $(NAME)
+
+oclean:
+	$(RM) $(OBJ)
+
+fclean: clean oclean
+
+re: fclean all
 
